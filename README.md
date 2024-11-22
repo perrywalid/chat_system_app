@@ -48,22 +48,21 @@ You can find the database schema in the following file:
 ### API Controllers
 
 The API controllers are implemented in the following files:
-- [app/controllers/applications_controller.rb](https://github.com/perrywalid/chat_system_app/blob/main/app/controllers/applications_controller.rb)
-- [app/controllers/chats_controller.rb](https://github.com/perrywalid/chat_system_app/blob/main/app/controllers/chats_controller.rb)
-- [app/controllers/messages_controller.rb](https://github.com/perrywalid/chat_system_app/blob/main/app/controllers/messages_controller.rb)
+- [applications_controller.rb](https://github.com/perrywalid/chat_system_app/blob/main/app/controllers/applications_controller.rb)
+- [chats_controller.rb](https://github.com/perrywalid/chat_system_app/blob/main/app/controllers/chats_controller.rb)
+- [messages_controller.rb](https://github.com/perrywalid/chat_system_app/blob/main/app/controllers/messages_controller.rb)
 
 ### Workers
 
 The workers are implemented in the following files:
-- [app/jobs/application_job.rb](https://github.com/perrywalid/chat_system_app/blob/main/app/jobs/application_job.rb)
-- [app/jobs/persist_object_job.rb](https://github.com/perrywalid/chat_system_app/blob/main/app/jobs/persist_object_job.rb)
-- [app/jobs/redis_consistency_job.rb](https://github.com/perrywalid/chat_system_app/blob/main/app/jobs/redis_consistency_job.rb)
-- [app/jobs/data_consistency_job.rb](https://github.com/perrywalid/chat_system_app/blob/main/app/jobs/data_consistency_job.rb)
+- [persist_object_job.rb](https://github.com/perrywalid/chat_system_app/blob/main/app/jobs/persist_object_job.rb)
+- [redis_consistency_job.rb](https://github.com/perrywalid/chat_system_app/blob/main/app/jobs/redis_consistency_job.rb)
+- [data_consistency_job.rb](https://github.com/perrywalid/chat_system_app/blob/main/app/jobs/data_consistency_job.rb)
 
 ### Tasks
 
 The tasks are implemented in the following file:
-- [lib/tasks/scheduler.rake](https://github.com/perrywalid/chat_system_app/blob/main/lib/tasks/scheduler.rake)
+- [scheduler.rake](https://github.com/perrywalid/chat_system_app/blob/main/lib/tasks/scheduler.rake)
 
 ## Running Tests
 
