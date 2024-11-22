@@ -1,22 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe 'Messages API', type: :request do
-  # Initialize test data
   let!(:application) { create(:application) }
   let!(:chat) { create(:chat, application: application) }
   let!(:messages) { create_list(:message, 5, chat: chat) }
 
-  # Define valid and invalid attributes based on your Message model
-  # Adjust the attributes as per your Message model's validations and fields
   let(:valid_attributes) { { body: 'This is a test message', number: 101 } }
   let(:invalid_attributes) { { body: nil, number: nil } }
 
-  # Helper method to parse JSON responses
   def json
     JSON.parse(response.body)
   end
 
-  # Test suite for GET /applications/:application_token/chats/:chat_number/messages
   describe 'GET /applications/:application_token/chats/:chat_number/messages' do
     context 'when the chat exists' do
       before { get "/applications/#{application.token}/chats/#{chat.number}/messages" }

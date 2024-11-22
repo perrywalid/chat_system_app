@@ -1,4 +1,3 @@
-# spec/requests/applications_spec.rb
 
 require 'rails_helper'
 
