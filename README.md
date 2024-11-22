@@ -19,7 +19,7 @@ To get started with the application, follow these steps:
 
 1. Clone the repository:
     ```sh
-    git clone <repository-url>
+    git clone https://github.com/perrywalid/chat_system_app.git
     cd chat-system-app
     ```
 
@@ -35,7 +35,7 @@ To get started with the application, follow these steps:
 
 3. Run the rake tasks to index Elasticsearch:
     ```sh
-rake searchkick:reindex:all
+    rake searchkick:reindex:all
     ```
 
 ## Documentation
@@ -43,31 +43,31 @@ rake searchkick:reindex:all
 ### Database Schema
 
 You can find the database schema in the following file:
-- [db/schema.rb](db/schema.rb)
+- [db/schema.rb](https://github.com/perrywalid/chat_system_app/blob/main/db/schema.rb)
 
 ### API Controllers
 
 The API controllers are implemented in the following files:
-- [app/controllers/applications_controller.rb](app/controllers/applications_controller.rb)
-- [app/controllers/chats_controller.rb](app/controllers/chats_controller.rb)
-- [app/controllers/messages_controller.rb](app/controllers/messages_controller.rb)
+- [app/controllers/applications_controller.rb](https://github.com/perrywalid/chat_system_app/blob/main/app/controllers/applications_controller.rb)
+- [app/controllers/chats_controller.rb](https://github.com/perrywalid/chat_system_app/blob/main/app/controllers/chats_controller.rb)
+- [app/controllers/messages_controller.rb](https://github.com/perrywalid/chat_system_app/blob/main/app/controllers/messages_controller.rb)
 
 ### Workers
 
 The workers are implemented in the following files:
-- [app/jobs/application_job.rb](app/jobs/application_job.rb)
-- [app/jobs/persist_object_job.rb](app/jobs/persist_object_job.rb)
-- [app/jobs/redis_consistency_job.rb](app/jobs/redis_consistency_job.rb)
-- [app/jobs/data_consistency_job.rb](app/jobs/data_consistency_job.rb)
+- [app/jobs/application_job.rb](https://github.com/perrywalid/chat_system_app/blob/main/app/jobs/application_job.rb)
+- [app/jobs/persist_object_job.rb](https://github.com/perrywalid/chat_system_app/blob/main/app/jobs/persist_object_job.rb)
+- [app/jobs/redis_consistency_job.rb](https://github.com/perrywalid/chat_system_app/blob/main/app/jobs/redis_consistency_job.rb)
+- [app/jobs/data_consistency_job.rb](https://github.com/perrywalid/chat_system_app/blob/main/app/jobs/data_consistency_job.rb)
 
 ### Tasks
 
 The tasks are implemented in the following file:
-- [lib/tasks/scheduler.rake](lib/tasks/scheduler.rake)
+- [lib/tasks/scheduler.rake](https://github.com/perrywalid/chat_system_app/blob/main/lib/tasks/scheduler.rake)
 
 ## Running Tests
 
 To run the test suite, use the following command:
-```bash
+```sh
 bundle exec rspec
 ```
