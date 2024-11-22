@@ -1,0 +1,9 @@
+:concurrency: 5
+:queues:
+  - default
+:scheduler:
+  schedule:
+    data_consistency_job:
+      cron: "0 * * * * *"
+      class: "DataConsistencyJob"
+      queue: default

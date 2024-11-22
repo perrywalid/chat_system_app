@@ -1,24 +1,73 @@
-# README
+# Chat System Application
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a chat system application built with Ruby on Rails. It supports creating applications, chats, and messages, and includes features like asynchronous job processing and data consistency checks.
 
-Things you may want to cover:
+## Features
 
-* Ruby version
+- **Applications Management**: Create and view applications identified by unique tokens.
+- **Chats Management**: Within each application, manage chats identified by unique numbers.
+- **Messages Management**: Within each chat, manage messages identified by unique numbers.
+- **Search Functionality**: Search through messages using ElasticSearch for partial content matching.
+- **Count Tracking**: Maintain `chats_count` and `messages_count` with updates no more than a minute behind.
+- **Concurrency Handling**: Safely handle concurrent requests with race condition prevention.
+- **Performance Optimizations**: Optimized database queries with appropriate indexing.
+- **Containerization**: Easily run the entire stack with `docker-compose up`.
 
-* System dependencies
+## Getting Started
 
-* Configuration
+To get started with the application, follow these steps:
 
-* Database creation
+1. Clone the repository:
+    ```sh
+    git clone <repository-url>
+    cd chat-system-app
+    ```
 
-* Database initialization
+2. Build and start the containers:
+    ```sh
+    docker-compose up --build
+    ```
 
-* How to run the test suite
+3. Access the web container:
+    ```sh
+    docker-compose exec web bash
+    ```
 
-* Services (job queues, cache servers, search engines, etc.)
+3. Run the rake tasks to index Elasticsearch:
+    ```sh
+rake searchkick:reindex:all
+    ```
 
-* Deployment instructions
+## Documentation
 
-* ...
+### Database Schema
+
+You can find the database schema in the following file:
+- [db/schema.rb](db/schema.rb)
+
+### API Controllers
+
+The API controllers are implemented in the following files:
+- [app/controllers/applications_controller.rb](app/controllers/applications_controller.rb)
+- [app/controllers/chats_controller.rb](app/controllers/chats_controller.rb)
+- [app/controllers/messages_controller.rb](app/controllers/messages_controller.rb)
+
+### Workers
+
+The workers are implemented in the following files:
+- [app/jobs/application_job.rb](app/jobs/application_job.rb)
+- [app/jobs/persist_object_job.rb](app/jobs/persist_object_job.rb)
+- [app/jobs/redis_consistency_job.rb](app/jobs/redis_consistency_job.rb)
+- [app/jobs/data_consistency_job.rb](app/jobs/data_consistency_job.rb)
+
+### Tasks
+
+The tasks are implemented in the following file:
+- [lib/tasks/scheduler.rake](lib/tasks/scheduler.rake)
+
+## Running Tests
+
+To run the test suite, use the following command:
+```bash
+bundle exec rspec
+```

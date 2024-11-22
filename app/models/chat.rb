@@ -1,24 +1,21 @@
 class Chat < ApplicationRecord
+  include Asynchronous
+  attr_accessor :application_token
+
   belongs_to :application
   has_many :messages, dependent: :destroy
 
   validates :number, uniqueness: { scope: :application_id }
 
-  def initialize(attributes = {})
-    super
-    self.number = next_number
-  end
+  scope :for_application_token, ->(application_token) { joins(:application).where(applications: { token: application_token }) }
 
-  # before_create :increment_counter
-
-  # def increment_counter
-  #   cache_key = "application:#{application.token}:chat_counter"
-  #   number = Rails.cache.increment(cache_key, 1, initial: 0)
-  # end
   private
 
-  def next_number
-    cache_key = "application:#{application.token}:chat_counter"
-    Rails.cache.increment(cache_key, 1, initial: 0)
+  def cache_key
+    "application:#{application_token}:number"
+  end
+
+  def associations
+    self.application = Application.find_by(token: application_token)
   end
 end

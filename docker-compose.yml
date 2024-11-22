@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: bundle exec puma -C config/puma.rb
+    ports:
+      - '3000:3000'
+    environment:
+      RAILS_ENV: development
+      REDIS_URL: redis://redis:6379/0
+      DATABASE_URL: mysql2://root:password@db:3306/chat_system_app_development
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+      DB_HOST: db
+      DB_PORT: 3306
+    depends_on:
+      - db
+      - redis
+      - elasticsearch
+
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq
+    environment:
+      RAILS_ENV: development
+      REDIS_URL: redis://redis:6379/0
+      DATABASE_URL: mysql2://root:password@db:3306/chat_system_app_development
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+      DB_HOST: db
+      DB_PORT: 3306
+
+    depends_on:
+      - db
+      - redis
+      - elasticsearch
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: chat_system_app_development
+    ports:
+      - '3306:3306'
+
+  redis:
+    image: redis:6.2
+    ports:
+      - '6379:6379'
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: 'false'
+      ES_JAVA_OPTS: '-Xms512m -Xmx512m'
+    ports:
+      - '9200:9200'
